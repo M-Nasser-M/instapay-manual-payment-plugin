@@ -31,11 +31,11 @@ import {
   PaymentActions,
   PaymentSessionStatus,
 } from "@medusajs/framework/utils";
-import { PhoneNumber, phoneNumberSchema } from "../types";
+import { InstapayPhoneOrHandle, instapayPhoneOrHandleSchema } from "../types";
 
 interface instapayManualAuthorizeInput extends AuthorizePaymentInput {
   data: {
-    phone_number: PhoneNumber;
+    instapayPhoneOrHandle: InstapayPhoneOrHandle;
   };
 }
 
@@ -46,8 +46,8 @@ export class instapayManualBase extends AbstractPaymentProvider {
     return "pending";
   }
 
-  validatePhoneNumber(phoneNumber: PhoneNumber): void {
-    phoneNumberSchema.parse(phoneNumber);
+  validatePhoneNumber(input: InstapayPhoneOrHandle): void {
+    instapayPhoneOrHandleSchema.parse(input);
   }
 
   async getPaymentData(input: any): Promise<Record<string, unknown>> {
@@ -80,7 +80,7 @@ export class instapayManualBase extends AbstractPaymentProvider {
   async authorizePayment(
     input: instapayManualAuthorizeInput
   ): Promise<AuthorizePaymentOutput> {
-    const phone_number = input.data.phone_number;
+    const phone_number = input.data.instapayPhoneOrHandle;
     this.validatePhoneNumber(phone_number);
     return { data: { phone_number }, status: PaymentSessionStatus.AUTHORIZED };
   }
