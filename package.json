@@ -1,6 +1,6 @@
 {
-  "name": "medusa-payment-instapay-manual",
-  "version": "0.0.1",
+  "name": "@m-nasser-m/medusa-payment-instapay-manual",
+  "version": "0.0.3",
   "description": "instapay Cash manual payment provider for Medusa",
   "author": "Mohamed Nasser",
   "license": "MIT",
@@ -32,16 +32,17 @@
     "build": "medusa plugin:build",
     "dev": "yarn predev && medusa plugin:develop",
     "predev": "medusa plugin:publish",
-    "prepublishOnly": "medusa plugin:build"
+    "prepublishOnly": "medusa plugin:build",
+    "bunpublish": "bun publish"
   },
   "devDependencies": {
-    "@medusajs/admin-sdk": "^2.7.0",
-    "@medusajs/cli": "^2.7.0",
-    "@medusajs/framework": "^2.7.0",
-    "@medusajs/icons": "^2.7.0",
-    "@medusajs/medusa": "^2.7.0",
-    "@medusajs/test-utils": "^2.7.0",
-    "@medusajs/ui": "^4.0.8",
+    "@medusajs/admin-sdk": "^2.8.0",
+    "@medusajs/cli": "^2.8.0",
+    "@medusajs/framework": "^2.8.0",
+    "@medusajs/icons": "^2.8.0",
+    "@medusajs/medusa": "^2.8.0",
+    "@medusajs/test-utils": "^2.8.0",
+    "@medusajs/ui": "^4.0.18",
     "@mikro-orm/cli": "6.4.3",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
@@ -62,13 +63,13 @@
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
-    "@medusajs/admin-sdk": "^2.7.0",
-    "@medusajs/cli": "^2.7.0",
-    "@medusajs/framework": "^2.7.0",
-    "@medusajs/icons": "^2.7.0",
-    "@medusajs/medusa": "^2.7.0",
-    "@medusajs/test-utils": "^2.7.0",
-    "@medusajs/ui": "^4.0.8",
+    "@medusajs/admin-sdk": "^2.8.0",
+    "@medusajs/cli": "^2.8.0",
+    "@medusajs/framework": "^2.8.0",
+    "@medusajs/icons": "^2.8.0",
+    "@medusajs/medusa": "^2.8.0",
+    "@medusajs/test-utils": "^2.8.0",
+    "@medusajs/ui": "^4.0.18",
     "@mikro-orm/cli": "6.4.3",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
@@ -80,5 +81,8 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "yarn@4.9.2"
+  "trustedDependencies": [
+    "@medusajs/telemetry",
+    "@swc/core"
+  ]
 }

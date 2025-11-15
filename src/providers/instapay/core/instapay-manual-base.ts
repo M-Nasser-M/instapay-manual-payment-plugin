@@ -80,9 +80,12 @@ export class instapayManualBase extends AbstractPaymentProvider {
   async authorizePayment(
     input: instapayManualAuthorizeInput
   ): Promise<AuthorizePaymentOutput> {
-    const phone_number = input.data.instapayPhoneOrHandle;
-    this.validatePhoneNumber(phone_number);
-    return { data: { phone_number }, status: PaymentSessionStatus.AUTHORIZED };
+    const instapay_phone_or_handle = input.data.instapayPhoneOrHandle;
+    this.validatePhoneNumber(instapay_phone_or_handle);
+    return {
+      data: { instapay_phone_or_handle },
+      status: PaymentSessionStatus.AUTHORIZED,
+    };
   }
 
   async updatePayment(input: UpdatePaymentInput): Promise<UpdatePaymentOutput> {
