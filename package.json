@@ -1,6 +1,6 @@
 {
   "name": "@m-nasser-m/medusa-payment-instapay-manual",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "instapay Cash manual payment provider for Medusa",
   "author": "Mohamed Nasser",
   "license": "MIT",
