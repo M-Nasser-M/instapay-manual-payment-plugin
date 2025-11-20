@@ -4,6 +4,7 @@
   "description": "instapay Cash manual payment provider for Medusa",
   "author": "Mohamed Nasser",
   "license": "MIT",
+  "repository": {"url": "https://github.com/M-Nasser-M/instapay-manual-payment-plugin"},
   "files": [
     ".medusa/server"
   ],
