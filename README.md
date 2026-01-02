@@ -17,6 +17,10 @@
 </h4>
 
 <p align="center">
-  A Medusa.js payment provider plugin for instapay  manual payments with phone number validation
+  A manual payment provider for Medusa that processes Instapay Cash payments requiring manual verification before order completion
+</p>
+
+<p align="center">
+  <strong>Repository:</strong> <a href="https://github.com/M-Nasser-M/instapay-manual-payment-plugin">GitHub</a>
 </p>
 
