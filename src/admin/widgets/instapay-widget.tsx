@@ -5,7 +5,6 @@ import { DetailWidgetProps, AdminOrder } from "@medusajs/framework/types";
 // The widget
 const OrderWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) => {
   const payment = order.payment_collections?.[0]?.payments?.[0];
-  console.log(payment);
 
   if (!payment) {
     return null;

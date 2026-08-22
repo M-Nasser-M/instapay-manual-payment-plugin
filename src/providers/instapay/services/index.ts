@@ -1,1 +1,1 @@
-export { default as instapayManualProvider } from "./instapay-manual-provider";
+export { default as InstapayManualProvider } from "./instapay-manual-provider";

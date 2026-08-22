@@ -1,7 +1,7 @@
 import { ModuleProvider, Modules } from "@medusajs/framework/utils";
-import { instapayManualProvider } from "./services";
+import { InstapayManualProvider } from "./services";
 
-const services = [instapayManualProvider];
+const services = [InstapayManualProvider];
 
 export default ModuleProvider(Modules.PAYMENT, {
   services,

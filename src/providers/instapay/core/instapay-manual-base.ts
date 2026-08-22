@@ -51,10 +51,6 @@ interface instapayManualAuthorizeInput extends AuthorizePaymentInput {
 export class instapayManualBase extends AbstractPaymentProvider {
   static identifier = "instapay-manual";
 
-  async getStatus(_): Promise<string> {
-    return "pending";
-  }
-
   validatePhoneNumber(input: unknown): InstapayPhoneOrHandle {
     return instapayPhoneOrHandleSchema.parse(input);
   }
@@ -69,14 +65,6 @@ export class instapayManualBase extends AbstractPaymentProvider {
       data.handle;
 
     return this.validatePhoneNumber(candidate);
-  }
-
-  async getPaymentData(input: any): Promise<Record<string, unknown>> {
-    return {
-      provider_id: this.constructor.name,
-      manual_payment: true,
-      requires_confirmation: true,
-    };
   }
 
   async initiatePayment(

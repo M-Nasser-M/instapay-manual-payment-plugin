@@ -1,13 +1,13 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
-import { z } from "zod";
+import { z } from "@medusajs/framework/zod";
 
 // Validation schema for instapay  phone number
 const instapaySchema = z.object({
   phone_number: z
     .string()
     .regex(
-      /^0100\d{7}$/,
-      "Phone number must start with 0100 and be exactly 11 digits"
+      /^(010|011|012|015)\d{8}$/,
+      "Phone number must be a valid Egyptian number starting with 010, 011, 012, or 015"
     )
     .transform((phone) => phone.replace(/\s+/g, "").replace(/[^\d]/g, "")),
   customer_name: z.string().optional(),
@@ -20,7 +20,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     message: "instapay  Payment Provider",
     provider_id: "instapay",
     supported_currencies: ["EGP"],
-    phone_format: "0100XXXXXXX (11 digits starting with 0100)",
+    phone_format: "01XXXXXXXXX (11 digits starting with 010, 011, 012, or 015)",
   });
 }
 
@@ -69,7 +69,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
       return res.status(400).json({
         success: false,
         error: "Validation failed",
-        details: error.errors.map((err) => ({
+        details: error.issues.map((err) => ({
           field: err.path.join("."),
           message: err.message,
         })),

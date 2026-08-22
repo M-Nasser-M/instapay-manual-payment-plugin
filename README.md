@@ -24,3 +24,65 @@
   <strong>Repository:</strong> <a href="https://github.com/M-Nasser-M/instapay-manual-payment-plugin">GitHub</a>
 </p>
 
+## Compatibility
+
+This plugin is compatible with Medusa v2.15.2 and above, and requires Node.js 22 or higher.
+
+## Overview
+
+This plugin provides a **manual payment provider** for Instapay Cash, a popular mobile payment service in Egypt. **Important:** This plugin requires manual verification by administrators for all payments. The plugin includes:
+
+- **Phone/Handle Validation**: Validates that the customer provides a valid Egyptian phone number (11 digits starting with 010, 011, 012, or 015) or an Instapay handle (ending with `@instapay`)
+- **Manual Payment Processing**: Allows customers to receive payment instructions and admins to verify payments manually
+- **Admin Interface**: Provides endpoints for payment verification and status management
+- **Store Interface**: Handles payment initiation with proper validation
+
+## Features
+
+- ✅ **Manual Verification Required**: All payments must be manually verified by administrators
+- ✅ **Strict Phone/Handle Validation**: Only accepts Egyptian phone numbers or `@instapay` handles
+- ✅ **Payment Instructions**: Provides clear step-by-step payment instructions to customers
+- ✅ **Admin Management Interface**: Admin endpoints for payment verification and status management (placeholder — see note below)
+- ✅ **TypeScript Support**: Fully typed implementation following Medusa best practices
+
+## Installation
+
+```bash
+npm install @m-nasser-m/medusa-payment-instapay-manual
+```
+
+## Configuration
+
+Register the provider with the Payment Module in your `medusa-config.ts`:
+
+```ts
+import { defineConfig } from "@medusajs/framework/utils"
+
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            resolve: "@m-nasser-m/medusa-payment-instapay-manual/providers/instapay",
+            id: "instapay-manual",
+          },
+        ],
+      },
+    },
+  ],
+})
+```
+
+## How It Works
+
+1. The customer selects **Instapay Cash** during checkout and enters their phone number or Instapay handle.
+2. The provider validates the input and authorizes the payment session (status `authorized`).
+3. Payment instructions are shown to the customer.
+4. The customer sends the amount via Instapay and keeps the transaction reference.
+5. An administrator verifies the payment manually (e.g. by capturing the payment from the Medusa Admin), which completes the order.
+
+> **Note:** The bundled admin API routes (`POST /admin/plugin`, `POST /admin/plugin/update-status`) are currently placeholder/demo endpoints and do not modify payments yet. Use the standard Medusa Admin payment capture flow to complete orders in the meantime.
+

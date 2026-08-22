@@ -1,8 +1,7 @@
-import * as z from "zod";
+import * as z from "@medusajs/framework/zod";
 export const instapayPhoneSchema = z
   .string({
-    required_error: "Phone number is required",
-    invalid_type_error: "Phone number must be a string",
+    error: "Phone number is required",
   })
   .length(11, "Phone number must be 11 digits")
   .regex(
@@ -14,8 +13,7 @@ export type InstapayPhone = z.infer<typeof instapayPhoneSchema>;
 
 export const instapayHandleSchema = z
   .string({
-    required_error: "Handle is required",
-    invalid_type_error: "Handle must be a string",
+    error: "Handle is required",
   })
   .min(9, "Handle must be at least 9 characters long")
   .endsWith("@instapay", "Handle must end with @instapay");
